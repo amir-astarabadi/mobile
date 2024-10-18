@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedSmallInteger('price');
             $table->unsignedSmallInteger('discount');
+            $table->unsignedSmallInteger('vendor')->default(0);
             $table->string('title', 100);
             $table->string('barnd', 100);
             $table->string('model', 100);

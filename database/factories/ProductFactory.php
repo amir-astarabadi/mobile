@@ -29,6 +29,7 @@ class ProductFactory extends Factory
             'weight' => random_int(10, 20),
             'price' => random_int(10, 20),
             'discount' => random_int(10, 20),
+            'vendor' => random_int(0, 10),
         ];
     }
 }

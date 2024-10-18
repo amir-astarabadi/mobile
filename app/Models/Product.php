@@ -21,6 +21,7 @@ class Product extends Model
         'hight',
         'weight',
         'storage',
+        'vendor',
     ];
 
     public function images()
