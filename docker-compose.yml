@@ -1,0 +1,47 @@
+services:
+    php:
+        build:
+            context: .
+            dockerfile: docker/php
+        volumes:
+            - .:/var/www/html
+        ports:
+            - 8000:8000
+        networks:
+            - mobile_network
+        depends_on:
+            - mysql
+
+    mysql:
+        image: mysql:8.1.0
+        container_name: mobile_mysql
+        ports:
+            - 8001:3306
+        volumes:
+            - mobile_mysql_data:/var/lib/mysql
+        environment:
+            - TZ=Asia/Tehran
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=mobile
+        networks:
+            - mobile_network
+
+    phpmyadmin:
+        image: phpmyadmin:5.2.1
+        container_name: mobile_pma
+        ports:
+            - 8002:80
+        environment:
+            PMA_HOST: mobile_mysql
+            MYSQL_ROOT_PASSWORD: password
+        networks:
+            - mobile_network
+        depends_on:
+            - mysql
+
+networks:
+    mobile_network:
+
+volumes:
+    mobile_mysql_data:
+

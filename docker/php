@@ -1,0 +1,9 @@
+FROM php:8.2.1-fpm
+
+WORKDIR /var/www/html
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+
+COPY . .
+
+CMD [ "php", "artisan", "serve", "--host=0.0.0.0" ]
